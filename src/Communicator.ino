@@ -14,13 +14,12 @@ WiFiClient Client;
    With this we constuct an array consumable by the JSON builder.
    */
 
-  String dataCSV;
-  AboveWaterSerial.print('d');
-  while(!Serial.available()){
-     delay(1000);
-  }
-  dataCSV = Serial.readStringUntil('z');
-  return dataCSV;
+   String dataCSV;
+   AboveWaterSerial.print('d');
+   while(dataCSV.length() <= 0) {
+     dataCSV = Serial.readStringUntil('z');
+   }
+   return dataCSV;
  }
 
  void splitCSV(String dataCSV, String * data){
@@ -105,7 +104,7 @@ WiFiClient Client;
 void setup() {
   Serial.begin(115200);
   AboveWaterSerial.begin(115200);
-  WiFiMulti.addAP("NSA Surveillance Van", "O3fntvrpDc9GDI1NkIKxH");
+  WiFiMulti.addAP("Verizon-791L-00CC", "78d8b2d1");
   while (WiFiMulti.run() != WL_CONNECTED) {
      Serial.print(".");
      delay(500);
